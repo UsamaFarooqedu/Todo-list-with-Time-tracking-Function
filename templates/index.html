@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO APP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  </head>
+  <body class="rows justify-content-center py-20">
+    <div>
+      <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a href="{% url 'new' %}" class="nav-link rounded-5" role="tab">Todo App</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a href="{% url 'list_view' %}" class="nav-link rounded-5" role="tab">All Task</a>
+        </li>
+
+        <li class="nav-item" role="presentation">
+          <a href="{% url 'login' %}" class="nav-link rounded-5" role="tab">Profile</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="center-screen">
+      <br>
+      <div class="mt-5 text-center">
+        <h1 class="display-4 fw-bold text-muted">Welcome to Todo List</h1>
+      </div>
+    </div>
+  </body>
+</html>

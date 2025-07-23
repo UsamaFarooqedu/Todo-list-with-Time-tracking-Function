@@ -1,0 +1,127 @@
+{% extends 'layout.html' %}
+
+
+{% block form %}
+
+<head>
+    <title class= 'text-center'>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+    <div>
+        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+    
+              <li class="nav-item" role="presentation">
+                <a href="{% url 'index' %}" class="nav-link rounded-5" role="tab">Home</a>
+            </li>
+    
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'new' %}" class="nav-link rounded-5" role="tab">Todo App</a>
+            </li>  
+            
+            <li class="nav-item" role="presentation">
+              <a href="{% url 'list_view' %}" class="nav-link rounded-5" role="tab">All Task</a>
+            </li>
+    
+            <li class="nav-item" role="presentation">
+              <a href="{% url 'new' %}" class="nav-link rounded-5" role="tab">Contact</a>
+            </li>
+    
+            <li class="nav-item" role="presentation">
+              <a href="{% url 'login' %}" class="nav-link rounded-5" role="tab">Profile</a>
+            </li>
+    
+          </ul>
+        </div>
+</head>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h2 class="text-center mb-4 p-3 display-5 fw-bold">Login</h2>
+            <form method="POST" action="{% url 'login' %}" class="py-3">
+                {% csrf_token %}
+                
+                <!-- Username Field -->
+                <div class="form-group mb-4">
+                    <label for="{{ form.username.id_for_label }}" class="form-label fs-5 mb-2">Username</label>
+                    <input type="text" 
+                           name="{{ form.username.name }}" 
+                           id="{{ form.username.id_for_label }}" 
+                           class="form-control rounded-pill p-3 fs-5 {% if form.username.errors %}is-invalid{% endif %}" 
+                           value="{{ form.username.value|default:'' }}"
+                           placeholder="Enter username"/>
+                    {% if form.username.errors %}
+                        <div class="invalid-feedback fs-6">
+                            {{ form.username.errors|first }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Password Field -->
+                <div class="form-group mb-4">
+                    <label for="{{ form.password.id_for_label }}" class="form-label fs-5 mb-2">Password</label>
+                    <input type="password" 
+                           name="{{ form.password.name }}" 
+                           id="{{ form.password.id_for_label }}" 
+                           class="form-control rounded-pill p-3 fs-5 {% if form.password.errors %}is-invalid{% endif %}"
+                           placeholder="Enter password"/>
+                    {% if form.password.errors %}
+                        <div class="invalid-feedback fs-6">
+                            {{ form.password.errors|first }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-dark rounded-pill py-3 fs-5 mb-3">
+                        Login
+                    </button>
+                    <div class="text-center">
+                        <p class="mb-2">Don't have an account?</p>
+                        <a href="{% url 'register' %}" class="btn btn-outline-primary rounded-pill px-4">
+                            Register
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Enhanced custom styles */
+    .form-control.rounded-pill {
+        padding: 1rem 1.5rem;
+        border: 2px solid #dee2e6;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control.rounded-pill:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    
+    .btn.rounded-pill {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn.rounded-pill:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .container {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+</style>
+
+{% endblock %}
